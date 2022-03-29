@@ -53,10 +53,10 @@ class NotificatationManager:
         night_temp = weather_forecast["night_temp"]
 
         self.forecast = f"Today, the weather will be mostly {weather_description}, with an average day-time temperature" \
-                        f" of {day_temp}c, although this will feel much more like {day_temp_feels_like}c.\n\n" \
+                        f" of {day_temp}°c, although this will feel much more like {day_temp_feels_like}°c.\n\n" \
                         f"The UV index is {uv}.\n\n" \
                         f"You can expect wind speeds averaging around {wind_speed}mph, with gusts of {wind_gusts}mph." \
-                        f" Tonight will have an average temperature of {night_temp}c."
+                        f" Tonight will have an average temperature of {night_temp}°c."
         return self.forecast
 
     def create_1_weather_warning_msg(self, alert_event, alert_description):
@@ -90,10 +90,14 @@ class NotificatationManager:
         return self.msg_subject, self.message
 
     def send_email(self):
+        body = f"{self.message}Today's Forecast:\n\n{self.forecast}"
+        message = EmailMessage()
+        message.add_header("From", MY_EMAIL)
+        message.add_header("To", EMAIL_TO)
+        message.add_header("Subject", self.msg_subject)
+        message.set_payload(body, "utf-8")
+
         with smtplib.SMTP("smtp.gmail.com") as connection:
             connection.starttls()
             connection.login(user=MY_EMAIL, password=PASSWORD)
-            connection.sendmail(from_addr=MY_EMAIL,
-                                to_addrs=EMAIL_TO,
-                                msg=f"Subject:{self.msg_subject}\n\n{self.message}Today's Forecast:"
-                                    f"\n\n{self.forecast}")
+            connection.send_message(message)
