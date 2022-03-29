@@ -47,6 +47,8 @@ class WeatherSearch:
                 self.alert_event_list.append(self.weather_data["alerts"][n]["event"])
             except KeyError:
                 pass
+            except IndexError:
+                pass
             else:
                 self.alert_description_list.append(self.weather_data["alerts"][n]["description"])
 
