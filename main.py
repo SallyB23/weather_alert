@@ -1,8 +1,8 @@
 from weather_search import WeatherSearch
-from notification_manager import NotificatationManager
+from notification_manager import NotificationManager
 
 ws = WeatherSearch()
-nm = NotificatationManager()
+nm = NotificationManager()
 
 ws.get_weather_data()
 nm.create_weather_forecast(ws.forecast_data)

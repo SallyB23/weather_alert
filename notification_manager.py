@@ -6,7 +6,7 @@ PASSWORD = os.environ.get("PASSWORD")
 EMAIL_TO = os.environ.get("EMAIL_TO")
 
 
-class NotificatationManager:
+class NotificationManager:
     def __init__(self):
         self.weather_alert_msgs = []
         self.msg_subject = "Today's Weather"
