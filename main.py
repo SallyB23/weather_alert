@@ -1,8 +1,8 @@
 from weather_search import WeatherSearch
-from notification_manager import NotificationManager
+from notification_manager import NotificatationManager
 
 ws = WeatherSearch()
-nm = NotificationManager()
+nm = NotificatationManager()
 
 ws.get_weather_data()
 nm.create_weather_forecast(ws.forecast_data)
@@ -32,4 +32,3 @@ else:
         nm.create_weather_forecast(ws.forecast_data)
 
 nm.send_email()
-

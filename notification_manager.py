@@ -1,12 +1,16 @@
 import smtplib
+from email.message import EmailMessage
 import os
+from dotenv import load_dotenv, find_dotenv
+
+load_dotenv(find_dotenv())
 
 MY_EMAIL = os.environ.get("MY_EMAIL")
 PASSWORD = os.environ.get("PASSWORD")
 EMAIL_TO = os.environ.get("EMAIL_TO")
 
 
-class NotificationManager:
+class NotificatationManager:
     def __init__(self):
         self.weather_alert_msgs = []
         self.msg_subject = "Today's Weather"

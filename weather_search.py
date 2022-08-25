@@ -1,5 +1,8 @@
 import requests
 import os
+from dotenv import load_dotenv, find_dotenv
+
+load_dotenv(find_dotenv())
 
 OWM_API_KEY = os.environ.get("OWM_API_KEY")
 MY_LAT = os.environ.get("MY_LAT")
